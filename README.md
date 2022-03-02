@@ -4,4 +4,4 @@ Studying the code from Terraforms by Mathcastles.
 
 ## Motivation 
 
-Started this repo the day I discovered this project. I want to put the pieces back together so I can understand it better, and take inspiration from it in my own work.
+Started this repo the day I discovered this project. I think this is a masterpiece that deserves to be studied by other developers. I want to put the pieces back together so I can understand it better, and take inspiration from it in my own work. 
