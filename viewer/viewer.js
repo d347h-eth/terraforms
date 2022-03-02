@@ -42,14 +42,14 @@ if (charSet.push(originalChars), isOrigin)
 	else charSet.push(makeSet(uni[Math.floor(SEED) % uni.length]));
 else if (SEED > 9970)
 	for (let e of uni) charSet.push(makeSet(e));
-else SEED > 5e3 
-&&
-charSet.push(makeSet(uni[Math.floor(SEED) % 3]));
+else SEED > 5e3 && charSet.push(makeSet(uni[Math.floor(SEED) % 3]));
+
 charSet = charSet.flat();
+
 let mainSet = originalChars.reverse();
-SEED >
-9950 &&
-(mainSet = charSet);
+
+SEED > 9950 && (mainSet = charSet);
+
 let gridEls = document.querySelectorAll('p'),
 	grid = [],
 	brushSize = 2,
@@ -71,21 +71,26 @@ for (let e = 0; e < 32; e++) {
 	grid.push([]);
 	for (let t = 0; t < 32; t++) {
 		let r = gridEls[t + 32 * e];
-		grid[e][t] = r, r.originalClass = r.className, r.activeClass = r.originalClass, r.h = classIds.length - classIds.indexOf(r.originalClass) - 1, r.originalH = r.h, isDaydream &&
-		(r.style.webkitUserSelect = 'none', r.style.userSelect = 'none'), r.onpointermove = (i => {
-			if (pointerDown && isDaydream) {
-				for (let r = -brushSize; r < brushSize; r++)
-					for (let i = -brushSize; i < brushSize; i++) {
-						let a = grid[Math.min(Math.max(0, e + r), 31)][Math.min(Math.max(0, t + i), 31)];
-						isEraser ? erase(a) : draw(a)
-					}
-				isEraser ? erase(r) : draw(r)
-			}
-		})
+		grid[e][t] = r, 
+    r.originalClass = r.className, 
+    r.activeClass = r.originalClass, 
+    r.h = classIds.length - classIds.indexOf(r.originalClass) - 1, 
+    r.originalH = r.h, 
+    isDaydream &&
+      (r.style.webkitUserSelect = 'none', r.style.userSelect = 'none'), r.onpointermove = (i => {
+        if (pointerDown && isDaydream) {
+          for (let r = -brushSize; r < brushSize; r++)
+            for (let i = -brushSize; i < brushSize; i++) {
+              let a = grid[Math.min(Math.max(0, e + r), 31)][Math.min(Math.max(0, t + i), 31)];
+              isEraser ? erase(a) : draw(a)
+            }
+          isEraser ? erase(r) : draw(r)
+        }
+      })
 	}
 }
-let speedFac = SEED >
-6500 ? 30 : 1;
+let speedFac = SEED > 6500 ? 30 : 1;
+
 setInterval(() => {
 	for (let e = 0; e < 32; e++)
 		for (let t = 0; t < 32; t++) {
@@ -99,11 +104,9 @@ setInterval(() => {
 		}
 	airship += 1
 }, loopLength), document.addEventListener('keyup', e => {
-	'e' == e.key &&
-	(isEraser = !1)
+	'e' == e.key && (isEraser = !1)
 }), document.addEventListener('keydown', e => {
-	'e' == e.key ? isEraser = !0 : 'q' == e.key ? brushSize = (brushSize + 1) % 4 : 'a' == e.key &&
-	pointerShift++
+	'e' == e.key ? isEraser = !0 : 'q' == e.key ? brushSize = (brushSize + 1) % 4 : 'a' == e.key && pointerShift++
 }), document.querySelector('svg').onpointerdown = (() => {
 	pointerShift++, pointerDown = !0
 }), document.querySelector('svg').onpointerup = (() => {
