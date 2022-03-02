@@ -65,8 +65,11 @@ function erase(e) {
 
 function draw(e) {
 	let t = classIds[pointerShift % classIds.length];
-	e.activeClass = t, e.setAttribute('class', t), e.h = pointerShift % classIds.length
+	e.activeClass = t, 
+  e.setAttribute('class', t), 
+  e.h = pointerShift % classIds.length
 }
+
 for (let e = 0; e < 32; e++) {
 	grid.push([]);
 	for (let t = 0; t < 32; t++) {
@@ -89,6 +92,7 @@ for (let e = 0; e < 32; e++) {
       })
 	}
 }
+
 let speedFac = SEED > 6500 ? 30 : 1;
 
 setInterval(() => {
@@ -108,7 +112,8 @@ setInterval(() => {
 }), document.addEventListener('keydown', e => {
 	'e' == e.key ? isEraser = !0 : 'q' == e.key ? brushSize = (brushSize + 1) % 4 : 'a' == e.key && pointerShift++
 }), document.querySelector('svg').onpointerdown = (() => {
-	pointerShift++, pointerDown = !0
+	pointerShift++, 
+  pointerDown = !0
 }), document.querySelector('svg').onpointerup = (() => {
 	pointerDown = !1;
 	for (let e of gridEls) e.style.animation = 'none', e.offsetHeight, e.style.animation = null
