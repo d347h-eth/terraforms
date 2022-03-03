@@ -12,7 +12,9 @@ describe("Terraforms", function () {
     terraformsContract,
     terraformsAlteredContract;
 
-  beforeEach(async function () {
+  it("Should compile contracts", async function () {
+    await network.provider.send("evm_increaseTime", [0]);
+
     // Deploy Augmentations Contract
     factory = await ethers.getContractFactory("TerraformsAugmentations");
     augmentationsContract = await factory.deploy();
@@ -71,14 +73,5 @@ describe("Terraforms", function () {
     );
 
     expect(terraformsAlteredContract.address).not.null;
-  });
-
-  let tx, receipt, error;
-
-  it("Should evolve over time", async function () {
-    tx = await terraformsAlteredContract
-      .mint(10, { value: ethers.utils.parseEther("1.6") });
-    receipt = await tx.wait();
-    console.log(receipt);
   });
 });

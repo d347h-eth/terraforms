@@ -34,11 +34,11 @@ pragma solidity ^0.8.0;
 */
 
 import "./ITerraformsData.sol";
-import "./TerraformsPlacements.sol";
+import "./TerraformsPlacementsAltered.sol";
 
 /// @title  Land parcels in an onchain 3D megastructure
 /// @author xaltgeist, with code direction and consultation from 0x113d
-contract TerraformsAltered is TerraformsPlacements {
+contract TerraformsAltered is TerraformsPlacementsAltered {
     
     /// @notice Tokens are pieces of an onchain 3D megastructure. Represents a
     ///         level of the structure
