@@ -3,12 +3,18 @@ const { ethers } = require("hardhat");
 
 describe("Terraforms", function () {
   let factory, 
+    augmentationsContract,
     perlinNoiseContract, 
     charactersContract,
     svgContract,
     terraformsDataContract;
 
   beforeEach(async function () {
+    // Deploy Augmentations Contract
+    factory = await ethers.getContractFactory("TerraformsAugmentations");
+    augmentationsContract = await factory.deploy();
+    expect(augmentationsContract.address).not.null;
+
     // Deploy Characters Contract
     factory = await ethers.getContractFactory("TerraformsCharacters");
     charactersContract = await factory.deploy();
@@ -32,22 +38,22 @@ describe("Terraforms", function () {
     terraformsDataContract = await factory.deploy(
       svgContract.address,
       perlinNoiseContract.address,
-      // _terraformsZonesAddress 
-      // _terraformsCharsAddress
+      augmentationsContract.address,
+      charactersContract.address
     );
     expect(terraformsDataContract.address).not.null;
 
     // // Deploy Terraform Contract
-    // TerraformContractFactory = await ethers.getContractFactory("Terraforms");
+    factory = await ethers.getContractFactory("Terraforms");
 
-    // [owner, addr1, addr2, addr3, addr4, ...addrs] = await ethers.getSigners();
+    [owner, user1, user2, user3, user4, ...users] = await ethers.getSigners();
 
-    // terraformContract = await TerraformContractFactory.deploy(
-    //   address _terraformsDataAddress, 
-    //   address _terraformsAugmentationsAddress
-    // );
+    terraformContract = await factory.deploy(
+      terraformsDataContract.address,
+      augmentationsContract.address
+    );
 
-    // expect(terraformContract.address).not.null;
+    expect(terraformContract.address).not.null;
   });
 
   it("Should evolve over time", async function () {
