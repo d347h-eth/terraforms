@@ -5,6 +5,7 @@ describe("Terraforms", function () {
   let factory, 
     augmentationsContract,
     perlinNoiseContract, 
+    zonesContract,
     charactersContract,
     svgContract,
     terraformsDataContract;
@@ -31,14 +32,16 @@ describe("Terraforms", function () {
     expect(perlinNoiseContract.address).not.null;
 
     // Deploy Zones Contract
-    // TODO: find it
+    factory = await ethers.getContractFactory("TerraformsZones");
+    zonesContract = await factory.deploy();
+    expect(zonesContract.address).not.null;
 
     // Deploy TerraformsData Contract
     factory = await ethers.getContractFactory("TerraformsData");
     terraformsDataContract = await factory.deploy(
       svgContract.address,
       perlinNoiseContract.address,
-      augmentationsContract.address, // Should be zonesContract which I haven't found yet
+      zonesContract.address,
       charactersContract.address
     );
     expect(terraformsDataContract.address).not.null;
