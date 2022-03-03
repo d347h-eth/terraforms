@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./ToString.sol";
+import "./libraries/ToString.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 /// @notice Interface for retrieving custom fonts

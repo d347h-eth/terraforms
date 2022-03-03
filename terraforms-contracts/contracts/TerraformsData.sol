@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./ToString.sol";
-import "./Base64.sol";
+import "./libraries/ToString.sol";
+import "./libraries/Base64.sol";
 import "./TerraformsDataInterfaces.sol";
 import "./TerraformsDataStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";

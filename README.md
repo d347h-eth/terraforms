@@ -13,3 +13,11 @@ This is a mono-repo, containing the front-end (terraforms-viewer) and the back-e
 ## Challenges
 
 [ ] Show what terrains would look like in 5000 years
+
+## Links
+
+https://docs.google.com/presentation/d/1v0ccwju6isFD8lIRKFyiPLxbVJhPCSmLLjxF3TBZG4I/edit#slide=id.p
+
+## Libraries
+
+PerlinNoise Solidity https://github.com/0x10f/solidity-perlin-noise
