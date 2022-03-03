@@ -38,7 +38,7 @@ describe("Terraforms", function () {
     terraformsDataContract = await factory.deploy(
       svgContract.address,
       perlinNoiseContract.address,
-      augmentationsContract.address,
+      augmentationsContract.address, // Should be zonesContract which I haven't found yet
       charactersContract.address
     );
     expect(terraformsDataContract.address).not.null;
