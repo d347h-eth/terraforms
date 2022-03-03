@@ -8,7 +8,9 @@ describe("Terraforms", function () {
     zonesContract,
     charactersContract,
     svgContract,
-    terraformsDataContract;
+    terraformsDataContract,
+    terraformsContract,
+    terraformsAlteredContract;
 
   beforeEach(async function () {
     // Deploy Augmentations Contract
@@ -46,20 +48,37 @@ describe("Terraforms", function () {
     );
     expect(terraformsDataContract.address).not.null;
 
-    // // Deploy Terraform Contract
+    // Deploy Terraforms Contract
     factory = await ethers.getContractFactory("Terraforms");
 
     [owner, user1, user2, user3, user4, ...users] = await ethers.getSigners();
 
-    terraformContract = await factory.deploy(
+    terraformsContract = await factory.deploy(
       terraformsDataContract.address,
       augmentationsContract.address
     );
 
-    expect(terraformContract.address).not.null;
+    expect(terraformsContract.address).not.null;
+
+    // Deploy Terraforms Altered Contract
+    factory = await ethers.getContractFactory("TerraformsAltered");
+
+    [owner, user1, user2, user3, user4, ...users] = await ethers.getSigners();
+
+    terraformsAlteredContract = await factory.deploy(
+      terraformsDataContract.address,
+      augmentationsContract.address
+    );
+
+    expect(terraformsAlteredContract.address).not.null;
   });
 
+  let tx, receipt, error;
+
   it("Should evolve over time", async function () {
-    // 
+    tx = await terraformsAlteredContract
+      .mint(10, { value: ethers.utils.parseEther("1.6") });
+    receipt = await tx.wait();
+    console.log(receipt);
   });
 });
