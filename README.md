@@ -9,3 +9,7 @@ Started this repo the day I discovered this project. I think this is a masterpie
 ## Architecture
 
 This is a mono-repo, containing the front-end (terraforms-viewer) and the back-end (terraform-contracts).
+
+## Challenges
+
+[ ] Show what terrains would look like in 5000 years
