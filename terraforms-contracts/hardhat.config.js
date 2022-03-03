@@ -112,7 +112,7 @@ task("timetravel", "Builds the castle and let it decay", async (taskArgs, hre) =
   }
 
   tx = await contracts.terraformsAlteredContract
-    .mint(1, { value: ethers.utils.parseEther("1600") });
+    .mint(10, { value: ethers.utils.parseEther("1600") });
 
   receipt = await tx.wait();
   
@@ -123,7 +123,6 @@ task("timetravel", "Builds the castle and let it decay", async (taskArgs, hre) =
   receipt = await tx.wait();
 
   console.log("Seed:", (await contracts.terraformsAlteredContract.seed()).toString());
-
 
   if (!fs.existsSync(`../terraforms-decay`)) {
     fs.mkdirSync(`../terraforms-decay`);
@@ -140,19 +139,20 @@ task("timetravel", "Builds the castle and let it decay", async (taskArgs, hre) =
     );
   }
 
+  const size = 10;
   const years = 5000;
-  const supply = 10000;
+  const interval = 100;
+  let y = 0;
 
-  for (let y = 0; y != years; y++) {
-    // for (let j = 1; j != supply; j++) {
-      // await sample(j, YEAR);
-    // }
-    console.log(`Sampling token #${1} year ${y}`);
-    await sample(1, y);
-    await timeTravel(YEAR);
+  while (y <= years) {
+    for (let i = 1; i <= size; i++) {
+      console.log(`Sampling token #${i} at year ${y}`);
+      await sample(i, y);
+    }
+
+    y += interval;
+    await timeTravel(interval * YEAR);
   }
-
-  // TODO: Store output in filesystem
 
   // Revert time
   // timeTravel(0); 
