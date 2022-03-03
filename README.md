@@ -1,6 +1,6 @@
 # Terraforms
 
-[Terraforms by Mathcastles](https://opensea.io/collection/terraforms) is a on-chain art masterpiece created by [0x113d](https://twitter.com/0x113d) and [xaltgeist](https://twitter.com/xaltgeist). This repository was put together in order to ease the study of their artwork. 
+[Terraforms by Mathcastles](https://opensea.io/collection/terraforms) is a on-chain art masterpiece created by [0x113d](https://twitter.com/0x113d) and [xaltgeist](https://twitter.com/xaltgeist). This repository contains all the Solidity contracts and isolated bits of code extracted from them (viewer and prereveal.svg).
 
 ## Motivation 
 
