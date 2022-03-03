@@ -1,6 +1,6 @@
 # Terraforms
 
-Studying the code from [https://opensea.io/collection/terraforms](Terraforms by Mathcastles). 
+Studying the code from (Terraforms by Mathcastles)[https://opensea.io/collection/terraforms]. 
 
 ## Motivation 
 
