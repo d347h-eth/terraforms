@@ -3,13 +3,9 @@ const { ethers } = require("hardhat");
 
 describe("Terraforms", function () {
   let factory, 
-    PerlinNoiseFactory,
     perlinNoiseContract, 
     charactersContract,
     svgContract,
-    TerraformContractFactory, 
-    terraformContract, 
-    TerraformsDataFactory, 
     terraformsDataContract;
 
   beforeEach(async function () {
@@ -30,7 +26,7 @@ describe("Terraforms", function () {
 
     // Deploy Zones Contract
     // TODO: find it
-    
+
     // Deploy TerraformsData Contract
     factory = await ethers.getContractFactory("TerraformsData");
     terraformsDataContract = await factory.deploy(
