@@ -1,6 +1,6 @@
 # Terraforms
 
-Studying the code from [Terraforms by Mathcastles](https://opensea.io/collection/terraforms). 
+[Terraforms by Mathcastles](https://opensea.io/collection/terraforms) is a on-chain art masterpiece created by [0x113d](https://twitter.com/0x113d) and [xaltgeist](https://twitter.com/xaltgeist). This repository was put together in order to ease the study of their artwork. 
 
 ## Motivation 
 
@@ -14,12 +14,14 @@ This is a mono-repo, containing the front-end (terraforms-viewer) and the back-e
 
 [ ] Show what terrains would look like in 5000 years
 
-## Links
+## Resources
 
-https://docs.google.com/presentation/d/1v0ccwju6isFD8lIRKFyiPLxbVJhPCSmLLjxF3TBZG4I/edit#slide=id.p
+Linking random things that I found useful while exploring the castle. 
 
-## Libraries
+The first slide from this deck got me hooked into learning more about the project:
+[Community FAQ](https://docs.google.com/presentation/d/1v0ccwju6isFD8lIRKFyiPLxbVJhPCSmLLjxF3TBZG4I/edit#slide=id.p)
 
-PerlinNoise Solidity https://github.com/0x10f/solidity-perlin-noise
+[PerlinNoise Solidity Repository](https://github.com/0x10f/solidity-perlin-noise)
 
-Deployer Wallet Tx https://etherscan.io/txs?a=0x9f400619b85eaca2f1f76f4f7e44ab7e5ee12cfa
+Reviewed the transactions from this address to trace back to all deployed contracts
+[Deployer Wallet Transactions](https://etherscan.io/txs?a=0x9f400619b85eaca2f1f76f4f7e44ab7e5ee12cfa)
