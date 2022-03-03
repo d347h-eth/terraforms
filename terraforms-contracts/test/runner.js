@@ -2,29 +2,44 @@ const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
 describe("Terraforms", function () {
-  let PerlinNoiseFactory,
+  let factory, 
+    PerlinNoiseFactory,
     perlinNoiseContract, 
+    charactersContract,
+    svgContract,
     TerraformContractFactory, 
     terraformContract, 
     TerraformsDataFactory, 
     terraformsDataContract;
 
   beforeEach(async function () {
+    // Deploy Characters Contract
+    factory = await ethers.getContractFactory("TerraformsCharacters");
+    charactersContract = await factory.deploy();
+    expect(charactersContract.address).not.null;
+
+    // Deploy TerraformsSVG Contract
+    factory = await ethers.getContractFactory("TerraformsSVG");
+    svgContract = await factory.deploy(charactersContract.address);
+    expect(svgContract.address).not.null;
+
     // Deploy PerlinNoise Contract
-    PerlinNoiseFactory = await ethers.getContractFactory("PerlinNoise");
-    perlinNoiseContract = await PerlinNoiseFactory.deploy();
+    factory = await ethers.getContractFactory("PerlinNoise");
+    perlinNoiseContract = await factory.deploy();
     expect(perlinNoiseContract.address).not.null;
 
+    // Deploy Zones Contract
+    // TODO: find it
+    
     // Deploy TerraformsData Contract
-    TerraformsDataFactory = await ethers.getContractFactory("TerraformsData");
-    terraformsDataContract = await TerraformsDataFactory.deploy(
-      // _terraformsSVGAddress
+    factory = await ethers.getContractFactory("TerraformsData");
+    terraformsDataContract = await factory.deploy(
+      svgContract.address,
       perlinNoiseContract.address,
-      // _terraformsZonesAddress
+      // _terraformsZonesAddress 
       // _terraformsCharsAddress
     );
     expect(terraformsDataContract.address).not.null;
-
 
     // // Deploy Terraform Contract
     // TerraformContractFactory = await ethers.getContractFactory("Terraforms");
@@ -39,20 +54,7 @@ describe("Terraforms", function () {
     // expect(terraformContract.address).not.null;
   });
 
-  it("Should return the new greeting once it's changed", async function () {
-
-
-    const Greeter = await ethers.getContractFactory("Greeter");
-    const greeter = await Greeter.deploy("Hello, world!");
-    await greeter.deployed();
-
-    expect(await greeter.greet()).to.equal("Hello, world!");
-
-    const setGreetingTx = await greeter.setGreeting("Hola, mundo!");
-
-    // wait until the transaction is mined
-    await setGreetingTx.wait();
-
-    expect(await greeter.greet()).to.equal("Hola, mundo!");
+  it("Should evolve over time", async function () {
+    // 
   });
 });

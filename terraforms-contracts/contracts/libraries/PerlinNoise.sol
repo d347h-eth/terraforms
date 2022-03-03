@@ -4,7 +4,8 @@ pragma solidity ^0.8.0;
 /**
  * @notice An implementation of Perlin Noise that uses 16 bit fixed point arithmetic.
  */
-contract PerlinNoise {
+library PerlinNoise {
+
     /**
      * @notice Computes the noise value for a 2D point.
      *
