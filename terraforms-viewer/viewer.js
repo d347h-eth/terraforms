@@ -30,9 +30,10 @@ let newSet, originalChars = [];
 
 for (let e of classIds) {
 	let t = document.querySelector('.' + e);
+	
 	if (t) {
 		let e = t.textContent;
-		originalChars.push(e)
+		originalChars.push(e);
 	}
 }
 

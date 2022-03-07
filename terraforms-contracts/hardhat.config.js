@@ -97,11 +97,16 @@ task("mint", "Mints all supply")
   .addOptionalParam("supply", "Supply target for minting", "11104")
   .setAction(async (args, hre) => {
     const contracts = await hre.run('deploy');
-    const amount = Math.ceil(args.supply / users.length);
+    const amount = Math.ceil(parseInt(args.supply) / users.length);
 
     let minted = 0;
+    const supply = parseInt(args.supply);
 
     for (let user of users) {
+      if (minted >= supply) {
+        break;
+      }
+
       tx = await contracts.terraformsAlteredContract
         .connect(user)
         .mint(amount, { value: ethers.utils.parseEther("1600") });
@@ -109,7 +114,7 @@ task("mint", "Mints all supply")
 
       minted += amount;
 
-      console.log(`Minting progress: ${minted}/${args.supply}`);
+      console.log(`Minting progress: ${minted}/${supply}`);
     }
 
     console.log(`Minted ${minted} Terraforms`);
@@ -162,19 +167,16 @@ task("snapshot", "Builds the castle and let it decay")
         await contracts.terraformsAlteredContract.tokenHTML(tokenId)
       );
       
-      let metadata = await contracts.terraformsAlteredContract.tokenURI(tokenId);
-      // let base64 = Buffer.from(metadata, 'base64');
+      let tokenUri = await contracts.terraformsAlteredContract.tokenURI(tokenId);
+      let metadata = JSON.parse(
+        Buffer.from(tokenUri.replace('data:application/json;base64,', ''), 'base64').toString(
+          'ascii',
+        ),
+      );
 
-      // console.log({
-      //   base64: base64, 
-      //   string: base64.toString(),
-      //   json: JSON.base64.toString()
-      // });
-      // Buffer.from(str, 'base64')
-      // buf.toString('base64')
       fs.writeFileSync(
         `./snapshot/${year}/${tokenId}.json`,
-        metadata
+        JSON.stringify(metadata)
       );
     }
 
