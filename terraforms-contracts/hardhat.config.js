@@ -97,14 +97,18 @@ task("mint", "Mints all supply")
   .addOptionalParam("supply", "Supply target for minting", "11104")
   .setAction(async (args, hre) => {
     const contracts = await hre.run('deploy');
-    const amount = Math.ceil(parseInt(args.supply) / users.length);
-
-    let minted = 0;
     const supply = parseInt(args.supply);
 
+    let amount = Math.ceil(supply / users.length);
+    let minted = 0;
+
     for (let user of users) {
-      if (minted >= supply) {
+      if (supply == minted) {
         break;
+      } 
+      
+      if ((minted + amount) >= supply) {
+        amount = supply - minted
       }
 
       tx = await contracts.terraformsAlteredContract
