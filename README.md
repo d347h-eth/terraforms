@@ -8,6 +8,7 @@ Started this repo the day I discovered this project. I think this is a masterpie
 
 ## Architecture
 
+This repo has previously been under https://github.com/notuart/terraforms (now is gone).
 This is a mono-repo, containing the front-end (terraforms-viewer) and the back-end (terraform-contracts).
 
 ## Challenges
@@ -25,3 +26,5 @@ The first slide from this deck got me hooked into learning more about the projec
 
 Reviewed the transactions from this address to trace back to all deployed contracts
 [Deployer Wallet Transactions](https://etherscan.io/txs?a=0x9f400619b85eaca2f1f76f4f7e44ab7e5ee12cfa)
+
+[Community-made list of builder resources](https://github.com/uronsol/terraforms-builder-resources)
